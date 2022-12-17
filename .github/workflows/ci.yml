@@ -54,29 +54,41 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+# from https://stackoverflow.com/questions/73599803/refer-to-docker-image-variable-name-in-github-action
+      - name: Deploy image
+        uses: floms/action-caprover@v1
+        with:
+          host: '${{ secrets.CAPROVER_SERVER }}'
+          password: '${{ secrets.CAPROVER_PASSWORD }}'
+          app: stagingapi
+          image: ${{ steps.meta.outputs.tags }}
+
+
+
+
 
 # when both docker images are made and uploaded then add a caprovercfg to branch caprover-deploy
 # so that caprover can pick up the change and deploy
 # https://github.com/caprover/caprover/issues/360
 # https://github.com/ad-m/github-push-action
-      - name: Build and push Docker image
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
-          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
-      - name: generate and Commit captain-definition to caprover-relase-branch
-        run: |
-          git config --local user.email "mail@johannes-froelich.de"
-          git config --local user.name "pcace"
-          git checkout caprover-release
-          echo "{"schemaVersion": 2,"imageName" : "ghcr.io/pcace/redwood-docker-compose-web:master"}" | tee captain-definition
-          git add captain-definition
-          git commit -a -m "Add caprover web" --allow-empty
-      - name: Push changes caprover-release
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GH_PACKAGE_TOKEN }}
-          branch: caprover-release
+      # - name: Build and push Docker image
+      #   uses: actions/checkout@v2
+      #   with:
+      #     persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+      #     fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+      # - name: generate and Commit captain-definition to caprover-relase-branch
+      #   run: |
+      #     git config --local user.email "mail@johannes-froelich.de"
+      #     git config --local user.name "pcace"
+      #     git checkout caprover-release
+      #     echo "{"schemaVersion": 2,"imageName" : "ghcr.io/pcace/redwood-docker-compose-web:master"}" | tee captain-definition
+      #     git add captain-definition
+      #     git commit -a -m "Add caprover web" --allow-empty
+      # - name: Push changes caprover-release
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.GH_PACKAGE_TOKEN }}
+      #     branch: caprover-release
 
       # -name: push to caprover
       # #https://github.com/marketplace/actions/caprover-deploy
