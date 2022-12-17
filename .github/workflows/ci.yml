@@ -23,8 +23,10 @@ jobs:
         include:
           - dockerfile: ./web/Dockerfile
             image: ghcr.io/pcace/redwood-docker-compose-web
+            appname: stagingweb
           - dockerfile: ./api/Dockerfile
             image: ghcr.io/pcace/redwood-docker-compose-api
+            appname: stagingapi
     permissions:
       contents: read
       packages: write
@@ -60,7 +62,7 @@ jobs:
         with:
           host: '${{ secrets.CAPROVER_SERVER }}'
           password: '${{ secrets.CAPROVER_PASSWORD }}'
-          app: stagingapi
+          app: ${{ matrix.appname }}
           image: ${{ steps.meta.outputs.tags }}
 
 
