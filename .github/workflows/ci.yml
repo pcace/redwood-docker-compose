@@ -73,6 +73,8 @@ jobs:
           git pull origin caprover-release
           echo "{"schemaVersion": 2,"imageName" : "ghcr.io/pcace/redwood-docker-compose-web:master"}" | tee captain-definition
           git add captain-definition
+          cat captain-definition
+          ls -la
           git commit -a -m "Add caprover web"
       - name: Push changes caprover-release
         uses: ad-m/github-push-action@master
