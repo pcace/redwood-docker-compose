@@ -75,7 +75,7 @@ jobs:
         with:
           host: '${{ secrets.CAPROVER_SERVER }}'
           password: '${{ secrets.CAPROVER_PASSWORD }}'
-          app: join(${{ steps.branch-name.outputs.current_branch }}${{ matrix.appname }})
+          app: ${{ steps.branch-name.outputs.current_branch }}${{ matrix.appname }})
           image: ${{ steps.meta.outputs.tags }}
 
 
