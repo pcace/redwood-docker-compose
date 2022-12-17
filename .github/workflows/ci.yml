@@ -71,6 +71,7 @@ jobs:
         run: |
           git config --local user.email "mail@johannes-froelich.de"
           git config --local user.name "pcace"
+          git pull origin captain-definition
           git add captain-definition
           git commit -a -m "Add caprover web"
       - name: Push changes captain-definition
