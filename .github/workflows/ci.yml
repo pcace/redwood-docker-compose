@@ -73,7 +73,7 @@ jobs:
           git add captain-definition
           cat captain-definition
           ls -la
-          git commit -a -m "Add caprover web"
+          git commit -a -m "Add caprover web" --allow-empty
       - name: Push changes caprover-release
         uses: ad-m/github-push-action@master
         with:
