@@ -2,9 +2,9 @@ name: Create and publish a Docker image
 
 on:
   push:
-    branches: ['main']
+    branches: ['master']
   pull_request:
-    branches: ['main']
+    branches: ['master']
 
 env:
   DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
