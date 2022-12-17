@@ -1,6 +1,8 @@
 name: Create and publish a Docker image
 
 # remember to put the githb Token into the action secrets! (GH_PACKAGE_TOKEN)
+# https://docs.github.com/en/actions/publishing-packages/publishing-docker-images#publishing-images-to-github-packages
+# https://community.redwoodjs.com/t/containerize-redwood-sides-with-docker-compose/2706
 
 on:
   push:
@@ -9,7 +11,7 @@ on:
     branches: ['master']
 
 env:
-  REGISTRY: ghcr.io
+  REGISTRY: registry.pfcace.de:996
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
@@ -20,9 +22,9 @@ jobs:
       matrix:
         include:
           - dockerfile: ./web/Dockerfile
-            image: ghcr.io/pcace/redwood-docker-compose-web
+            image: registry.pfcace.de:996/caprover/redwood-docker-compose-web
           - dockerfile: ./api/Dockerfile
-            image: ghcr.io/pcace/redwood-docker-compose-api
+            image: registry.pfcace.de:996/caprover/redwood-docker-compose-api
     permissions:
       contents: read
       packages: write
@@ -35,8 +37,8 @@ jobs:
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GH_PACKAGE_TOKEN }}
+          username: caprover
+          password: ${{ secrets.CAPROVER_PW }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
