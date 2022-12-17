@@ -9,6 +9,7 @@ A file like `favicon.png` will be copied to `/dist/favicon.png`. A folder contai
 ```
 and
 ```
+
 <img src="/static-files/my-logo.jpg"> alt="Logo" />
 ```
 
