@@ -3,7 +3,7 @@ name: Create and publish a Docker image
 # remember to put the githb Token into the action secrets! (GH_PACKAGE_TOKEN)
 # https://docs.github.com/en/actions/publishing-packages/publishing-docker-images#publishing-images-to-github-packages
 # https://community.redwoodjs.com/t/containerize-redwood-sides-with-docker-compose/2706
-
+# https://github.com/caprover/caprover/issues/360
 on:
   push:
     branches: ['master']
@@ -54,3 +54,35 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+# when both docker images are made and uploaded then add a caprovercfg to branch caprover-deploy
+# so that caprover can pick up the change and deploy
+# https://github.com/caprover/caprover/issues/360
+# https://github.com/ad-m/github-push-action
+      - uses: actions/checkout@v2
+          with:
+            persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+            fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+        - name: Create local changes
+          run: |
+            rm captain-definition
+            echo "{"schemaVersion": 2,"imageName" : "ghcr.io/pcace/redwood-docker-compose-web:master"}" | tee captain-definition
+        - name: Commit captain-definition
+          run: |
+            git config --local user.email "mail@johannes-froelich.de"
+            git config --local user.name "pcace"
+            git commit -a -m "Add caprover web"
+        - name: Push changes captain-definition
+          uses: ad-m/github-push-action@master
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            branch: caprover-release
+
+      # -name: push to caprover
+      # #https://github.com/marketplace/actions/caprover-deploy
+      #  uses: AlexxNB/caprover-action@v1
+      #  with:
+      #    server: 'https://captain.pfcace.de'
+      #    password: '${{ secrets.CAPROVER_PW }}'
+      #    appname: 'staging'
+      #    branch: 'caprover-release'
