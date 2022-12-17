@@ -77,7 +77,7 @@ jobs:
       - name: Push changes captain-definition
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_PACKAGE_TOKEN }}
           branch: caprover-release
 
       # -name: push to caprover
