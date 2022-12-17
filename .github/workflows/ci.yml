@@ -6,17 +6,10 @@ name: Create and publish a Docker image
 # https://github.com/caprover/caprover/issues/360
 on:
   push:
-    # TODO: set stage on wich it should hear or when the action should take place
-    branches: ['main']
-  push:
-    # TODO: set stage on wich it should hear or when the action should take place
-    branches: ['staging']
-  push:
-    # TODO: set stage on wich it should hear or when the action should take place
-    branches: ['dev']
-  # pull_request:
-    # TODO: set stage on wich it should hear or when the action should take place
-    # branches: ['staging']
+      branches: ['master']
+      # branches: ['main', 'master', 'staging', 'dev']
+
+
 
 env:
   REGISTRY: ghcr.io
