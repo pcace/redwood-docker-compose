@@ -1,5 +1,7 @@
 name: Create and publish a Docker image
 
+# remember to put the githb Token into the action secrets! (GH_PACKAGE_TOKEN)
+
 on:
   push:
     branches: ['master']
