@@ -6,13 +6,20 @@ name: Create and publish a Docker image
 # https://github.com/caprover/caprover/issues/360
 on:
   push:
-    branches: ['master']
-  pull_request:
-    branches: ['master']
+    # TODO: set stage on wich it should hear or when the action should take place
+    branches: ['main']
+  push:
+    # TODO: set stage on wich it should hear or when the action should take place
+    branches: ['staging']
+  push:
+    # TODO: set stage on wich it should hear or when the action should take place
+    branches: ['dev']
+  # pull_request:
+    # TODO: set stage on wich it should hear or when the action should take place
+    # branches: ['staging']
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build-and-push-image:
@@ -23,15 +30,20 @@ jobs:
         include:
           - dockerfile: ./web/Dockerfile
             image: ghcr.io/pcace/redwood-docker-compose-web
-            appname: stagingweb
+            appname: web
           - dockerfile: ./api/Dockerfile
             image: ghcr.io/pcace/redwood-docker-compose-api
-            appname: stagingapi
+            appname: api
+
     permissions:
       contents: read
       packages: write
 
     steps:
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v6
+
     # checkout lates repository
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -70,7 +82,7 @@ jobs:
         with:
           host: '${{ secrets.CAPROVER_SERVER }}'
           password: '${{ secrets.CAPROVER_PASSWORD }}'
-          app: ${{ matrix.appname }}
+          app: join(id,${{ matrix.appname }})
           image: ${{ steps.meta.outputs.tags }}
 
 
