@@ -69,8 +69,6 @@ jobs:
           git config --local user.email "mail@johannes-froelich.de"
           git config --local user.name "pcace"
           git checkout caprover-release
-          git config pull.rebase true
-          git pull origin caprover-release
           echo "{"schemaVersion": 2,"imageName" : "ghcr.io/pcace/redwood-docker-compose-web:master"}" | tee captain-definition
           git add captain-definition
           cat captain-definition
