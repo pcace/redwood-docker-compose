@@ -71,10 +71,10 @@ jobs:
         run: |
           git config --local user.email "mail@johannes-froelich.de"
           git config --local user.name "pcace"
-          git pull origin captain-release
+          git pull origin caprover-release
           git add captain-definition
           git commit -a -m "Add caprover web"
-      - name: Push changes captain-release
+      - name: Push changes caprover-release
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GH_PACKAGE_TOKEN }}
