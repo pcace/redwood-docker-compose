@@ -12,6 +12,7 @@
       "not IE_Mob 11"
     ]
   },
+
   "dependencies": {
     "@redwoodjs/forms": "3.7.1",
     "@redwoodjs/router": "3.7.1",
