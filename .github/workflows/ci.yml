@@ -3,7 +3,11 @@ name: Create and publish a Docker image
 # remember to put the githb Token into the action secrets! (GH_PACKAGE_TOKEN)
 # https://docs.github.com/en/actions/publishing-packages/publishing-docker-images#publishing-images-to-github-packages
 # https://community.redwoodjs.com/t/containerize-redwood-sides-with-docker-compose/2706
+<<<<<<< HEAD
 # https://github.com/caprover/caprover/issues/360
+=======
+
+>>>>>>> 82866bc (use gc)
 on:
   push:
     branches: ['master']
