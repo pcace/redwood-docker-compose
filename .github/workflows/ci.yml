@@ -6,8 +6,8 @@ name: Create and publish a Docker image
 # https://github.com/caprover/caprover/issues/360
 on:
   push:
-      branches: ['master']
-      # branches: ['main', 'master', 'staging', 'dev']
+      # branches: ['master']
+      branches: ['main', 'master', 'staging', 'dev']
 
 
 
