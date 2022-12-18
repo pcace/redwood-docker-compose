@@ -78,10 +78,18 @@ jobs:
         with:
           host: '${{ secrets.CAPROVER_SERVER }}'
           password: '${{ secrets.CAPROVER_PASSWORD }}'
-          app: ${{ steps.branch-name.outputs.current_branch }}${{ matrix.appname }})
+          app: ${{ steps.branch-name.outputs.current_branch }}${{ matrix.appname }}
           image: ${{ steps.meta.outputs.tags }}
 
-#
+      # -name: push to caprover
+      # #https://github.com/marketplace/actions/caprover-deploy
+      #  uses: AlexxNB/caprover-action@v1
+      #  with:
+      #    server: '${{ secrets.CAPROVER_SERVER }}'
+      #    password: '${{ secrets.CAPROVER_PASSWORD }}'
+      #    appname: ${{ steps.branch-name.outputs.current_branch }}${{ matrix.appname }})
+      #    branch: ${{ steps.meta.outputs.tags }}
+
 
 
 
