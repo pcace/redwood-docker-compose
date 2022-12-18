@@ -9,8 +9,6 @@ on:
       # branches: ['master']
       branches: ['main', 'master', 'staging', 'dev']
 
-
-
 env:
   REGISTRY: ghcr.io
 
