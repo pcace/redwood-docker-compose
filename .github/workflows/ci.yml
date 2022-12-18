@@ -43,6 +43,8 @@ jobs:
         uses: actions/checkout@v2
 
     # add .env file from github secret
+    # this can be done in the caprover interface too!!!
+    # https://github.com/caprover/caprover/discussions/1571
       - name: add .env file
         uses: DamianReeves/write-file-action@master
         with:
