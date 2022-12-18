@@ -4,7 +4,7 @@ name: Create and publish a Docker image
 # https://docs.github.com/en/actions/publishing-packages/publishing-docker-images#publishing-images-to-github-packages
 # https://community.redwoodjs.com/t/containerize-redwood-sides-with-docker-compose/2706
 # https://github.com/caprover/caprover/issues/360
-
+# https://github.com/caprover/caprover/issues/1605
 on:
   push:
       # branches: ['master']
