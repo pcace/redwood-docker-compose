@@ -10,6 +10,7 @@ COPY redwood.toml .
 COPY yarn.lock .
 
 RUN yarn install
+# vllt raus...
 RUN yarn add react react-dom --ignore-workspace-root-check
 RUN yarn rw build api
 RUN rm -rf ./api/src

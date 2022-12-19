@@ -45,12 +45,12 @@ jobs:
     # add .env file from github secret
     # this can be done in the caprover interface too!!!
     # https://github.com/caprover/caprover/discussions/1571
-      - name: add .env file
-        uses: DamianReeves/write-file-action@master
-        with:
-          path: api/db/.env
-          contents: ${{ secrets.DB_STAGING }}
-          write-mode: append
+      # - name: add .env file
+      #   uses: DamianReeves/write-file-action@master
+      #   with:
+      #     path: api/db/.env
+      #     contents: ${{ secrets.DB_STAGING }}
+      #     write-mode: append
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
