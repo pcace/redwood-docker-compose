@@ -13,8 +13,7 @@
   port = 8910
   # the api URL will be changed via github Actions when publishing to https://productionapi.pfcace.de/api
   # this apiUrl only gets used for faster local development.
-  apiUrl=https://productionapi.pfcace.de/api # you can customise graphql and dbauth urls individually too: see https://redwoodjs.com/docs/app-configuration-redwood-toml#api-paths
-  #apiUrl = "http://localhost:8911" # you can customise graphql and dbauth urls individually too: see https://redwoodjs.com/docs/app-configuration-redwood-toml#api-paths
+  apiUrl = "http://localhost:8911" # you can customise graphql and dbauth urls individually too: see https://redwoodjs.com/docs/app-configuration-redwood-toml#api-paths
 
   includeEnvironmentVariables = [] # any ENV vars that should be available to the web side, see https://redwoodjs.com/docs/environment-variables#web
 [api]
