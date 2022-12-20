@@ -45,7 +45,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: "^*apiUrl.*"
-          replace: apiUrl = https://${{ steps.branch-name.outputs.current_branch }}api.pfcace.de/api
+          replace: apiUrl = "https://${{ steps.branch-name.outputs.current_branch }}api.pfcace.de/api"
           regex: true
           include: 'redwood.toml'
     # add .env file from github secret
